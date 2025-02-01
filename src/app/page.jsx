@@ -10,6 +10,8 @@
       <h2 style={{ color:'red', textAlign:'center', fontSize: 30  }}>Welcome to React using Next JS</h2>
 
       <input type="text" className='border border-gray-800 p-2' placeholder='text' />
+
+      <button className='global-btn'>Global Button</button>
      
      
     </div>
