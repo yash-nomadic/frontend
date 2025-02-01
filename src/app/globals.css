@@ -1,3 +1,11 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+.global-btn{
+    background-color: black;
+    border-radius: 5px;
+    padding: 5px;
+    border: none;
+    color: white;
+}
