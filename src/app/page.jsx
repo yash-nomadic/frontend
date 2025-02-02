@@ -1,5 +1,6 @@
 import Button from '@/components/Button';
 import Card from '@/components/Card';
+import Input from '@/components/Input';
 import React from 'react'
 
 const Home = () => {
@@ -29,8 +30,11 @@ const Home = () => {
         primary={'ok'}
         secondary={'cancel'}
 
-      
+
       />
+
+
+      <Input/>
       
       
 
