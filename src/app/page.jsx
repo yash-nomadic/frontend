@@ -1,6 +1,6 @@
 import Button from '@/components/Button';
 import Card from '@/components/Card';
-import Input from '@/components/Input';
+import Input from '@/components/TextInput';
 import React from 'react'
 
 const Home = () => {
@@ -19,12 +19,12 @@ const Home = () => {
 
       <img src="/next.svg" alt="" />
 
-      <Button disabled = {true}>My button</Button>
+      <Button disabled={true}>My button</Button>
       <Button>Submit</Button>
-      <Button disabled = {true}>Nice</Button>
+      <Button disabled={true}>Nice</Button>
 
 
-      <Card 
+      <Card
         title={'my card tittle'}
         description={'this is a card discription'}
         primary={'ok'}
@@ -34,9 +34,15 @@ const Home = () => {
       />
 
 
-      <Input/>
-      
-      
+      <Input
+        id='name'
+        label='Name'
+        type='text'
+        placeholder='Enter your name'
+        
+      />
+
+
 
 
 
