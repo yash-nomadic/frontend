@@ -10,10 +10,15 @@ const EventHandling = () => {
             <hr />
 
             <button
-                onClick={ () => { aler('button was clicked'); }  }
+                onClick={() => { aler('button was clicked'); }}
                 className='border rounded-md p-3 bg-gray-200'>
                 Click me
             </button>
+
+
+            <input
+                className='w-full px-3 py-1 border-2 mt-5'
+                type="text" />
 
         </div>
     )
