@@ -1,8 +1,32 @@
 'use client';
 
 import React from 'react'
+import Login from '../login/page';
 
 const EventHandling = () => {
+
+    const previewImage = (e) => {
+        //access the image file
+        const file= e.target.files[0];
+
+        //intitialize file reader object
+        const reader = new FileReader();
+
+        //add img to page when file is loaded
+        reader.onload = (data) => {
+            const img = document.createElement('img');
+            img.src = data.target.result;
+            document.body.appendChild(img);
+
+        }
+
+        // read the file
+        reader.readAsDataURL(file);
+
+    }
+
+
+
     return (
         <div className='max-w-[80%] mx-auto'>
 
@@ -17,8 +41,40 @@ const EventHandling = () => {
 
 
             <input
+                onChange={(e) => { console.log(e.target.value); }}
                 className='w-full px-3 py-1 border-2 mt-5'
-                type="text" />
+                type="text"
+            />
+
+            <input
+
+                onChange={(e) => {
+                    document.body.style.backgroundColor = e.target.value
+                }}
+                className='mt-5'
+                type="color"
+            />
+
+            <input
+                multiple
+                accept='image/png'
+                onChange={(e) => {
+                    console.log(e.target.files);
+                }}
+
+                type="file"
+            />
+
+
+            <input
+                accept='image/*'
+                onChange={previewImage}
+                type="file"
+            />
+
+
+
+
 
         </div>
     )
