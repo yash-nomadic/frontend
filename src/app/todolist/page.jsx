@@ -5,7 +5,13 @@ import React, { useState } from 'react'
 const Todolist = () => {
 
     // let count = 0;
-    const [count, setCount] = useState(0)
+    // const [count, setCount] = useState(0)
+
+    const [taskList, setTaskList] = useState([
+        { text: 'Eat Food', completed: false },
+        { text: 'Play Games', completed: false },
+        { text: 'Do calling', completed: false }
+    ]);
 
     const addNewTask = (e) => {
         console.log(e.code);
@@ -35,13 +41,23 @@ const Todolist = () => {
                             type="text"
                         />
 
-                        <h1 className='text-2xl font-bold'>{count}</h1>
+                        {/* <h1 className='text-2xl font-bold'>{count}</h1>
 
                         <button className='border p-3' onClick={() => {
                             setCount(count+1);
                             console.log(count);
 
-                        }}>Add Count</button>
+                        }}>Add Count</button> */}
+                    </div>
+
+                    <div className='p-8'>
+                        {
+                            taskList.map((task, index) => {
+                                return <div key={index} className='shadow mb-5 rounded-lg p-5 bg-slate-200 font-medium'>
+                                    <p>{task.text}</p>
+                                </div>
+                            })
+                        }
 
 
 
