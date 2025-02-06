@@ -1,5 +1,6 @@
 'use client'
 
+import { IconSquareRoundedCheck, IconTrash } from '@tabler/icons-react';
 import React, { useState } from 'react'
 
 const Todolist = () => {
@@ -8,20 +9,40 @@ const Todolist = () => {
     // const [count, setCount] = useState(0)
 
     const [taskList, setTaskList] = useState([
-        { text: 'Eat Food', completed: false },
-        { text: 'Play Games', completed: false },
-        { text: 'Do calling', completed: false }
+        {text: 'hfg', completed: false}
     ]);
 
     const addNewTask = (e) => {
-        console.log(e.code);
 
+        
         if (e.code === 'Enter') {
+            
+            if (!e.target.value.trim()) {
+                return alert('Please Enter a task');
+            }
+
             console.log(e.target.value);
-            e.target.value = ''
+
+            const newTask = { text: e.target.value, completed: false };
+
+            setTaskList([newTask, ...taskList]);
+
+
+            e.target.value = '';
+
+
 
         }
 
+    }
+
+    const deleteTask = (index)=>{
+        console.log(index);
+
+        const temp = taskList;
+        taskList.splice(index, 1)
+        setTaskList([...temp]);
+        
     }
 
 
@@ -41,20 +62,26 @@ const Todolist = () => {
                             type="text"
                         />
 
-                        {/* <h1 className='text-2xl font-bold'>{count}</h1>
 
-                        <button className='border p-3' onClick={() => {
-                            setCount(count+1);
-                            console.log(count);
-
-                        }}>Add Count</button> */}
                     </div>
 
-                    <div className='p-8'>
+                    <div className='p-8 h-[60vh] overflow-y-scroll'>
                         {
                             taskList.map((task, index) => {
-                                return <div key={index} className='shadow mb-5 rounded-lg p-5 bg-slate-200 font-medium'>
-                                    <p>{task.text}</p>
+                                return <div key={index} className='shadow mb-5 rounded-lg p-5 bg-blue-500 font-medium text-white flex justify-between items-center'>
+                                    <p className=''>{task.text}</p>
+
+                                    <div className='flex gap-3'>
+                                        <button className='bg-white p-2 rounded ' onClick={() => {deleteTask(index)}}>
+                                            <IconTrash color='red' size={24} />
+                                        </button>
+                                        <button className='bg-white p-2 rounded '>
+                                            <IconSquareRoundedCheck color='green' size={24} />
+                                        </button>
+
+                                    </div>
+
+
                                 </div>
                             })
                         }
