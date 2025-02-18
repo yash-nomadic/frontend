@@ -15,14 +15,14 @@ const Login = () => {
 
         <div className=''>
 
-          <form className='text-xl p-4 font-semibold my-6'>
+          <form className='text-xl p-8  my-6'>
 
-            <label htmlFor="email" >Email</label>
-            <input type="text" placeholder='Enter your email here' className='border border-gray-800 w-full ' /> 
+            <label htmlFor="email" className='font-semibold'>Email</label>
+            <input type="text" placeholder='Enter your email here' className='border border-gray-800 w-full rounded-lg' /> 
 
 
-            <label htmlFor="pasword">Password</label>
-            <input type="password" placeholder='Enter your password here' className='border border-gray-800 w-full ' /> 
+            <label htmlFor="pasword" className='font-semibold'>Password</label>
+            <input type="password" placeholder='Enter your password here' className='border border-gray-800 w-full rounded-lg' /> 
 
             <button className='block w-1/2 rounded-lg bg-blue-500 text-white text-center mx-auto my-4'>Submit</button>
 
