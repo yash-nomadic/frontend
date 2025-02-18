@@ -4,7 +4,9 @@ import React, { useState } from 'react'
 
 const Chat = () => {
 
-    const [msgList, setMsgList] = useState();
+    const [msgList, setMsgList] = useState([
+        {text:'hfg', completed: false}
+    ]);
 
 
     const addMsg = (e) => {
