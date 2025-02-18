@@ -1,6 +1,10 @@
 'use client';
+import { IconLoader3, IconSend2 } from '@tabler/icons-react';
+import axios from 'axios';
 import { useFormik } from 'formik';
+import { useRouter } from 'next/navigation';
 import React from 'react'
+import toast from 'react-hot-toast';
 import * as Yup from 'yup';
 
 const SignupSchema = Yup.object().shape({
@@ -9,16 +13,19 @@ const SignupSchema = Yup.object().shape({
     .max(50, 'Too Long!')
     .required('kya naam h tumhara'),
   email: Yup.string().email('Invalid email').required('Required'),
-  pasword: Yup.string().required('Password is required')
+  password: Yup.string().required('Password is required')
     .matches(/[a-z]/, 'Lowercase letter is required')
     .matches(/[A-Z]/, 'Uppercase letter is required')
     .matches(/[0-9]/, 'Number is required')
     .matches(/[\W]/, 'Special character is required'),
-    confirmPassword: Yup.string().required('Confirm Password is required')
+  confirmPassword: Yup.string().required('Confirm Password is required')
     .oneOf([Yup.ref('password'), null], 'Password must match')
 });
 
+
 const page1 = () => {
+
+  const router = useRouter();
   // initializing formik 
   const signupForm = useFormik({
     initialValues: {
@@ -27,14 +34,34 @@ const page1 = () => {
       password: '',
       confirmPassword: ''
     },
-    onSubmit: (value) => {
+    onSubmit: (value, { resetForm, setSubmitting }) => {
       console.log(value);
+
+
       // send values to backend 
+      // sending request to backend
+      axios.post('http://localhost:5000/user/add', value)
+        .then((result) => {
+          toast.success('User registered successfully');
+          resetForm();
+          router.push('/login');
+        }).catch((err) => {
+          console.log(err);
+          toast.error('Something went wrong');
+          setSubmitting(false);
+          
+        });
+
+
+
+
+
     },
     validationSchema: SignupSchema
 
   })
 
+  console.log(signupForm.errors);
   return (
     <div className='max-w-xl mx-auto'>
       <div className="mt-7 bg-white border border-gray-200 rounded-xl shadow-sm dark:bg-neutral-900 dark:border-neutral-700">
@@ -280,9 +307,14 @@ const page1 = () => {
                 </div>
                 {/* End Checkbox */}
                 <button
+                  disabled = { signupForm.isSubmitting }
                   type="submit"
                   className="w-full py-3 px-4 inline-flex justify-center items-center gap-x-2 text-sm font-medium rounded-lg border border-transparent bg-blue-600 text-white hover:bg-blue-700 focus:outline-none focus:bg-blue-700 disabled:opacity-50 disabled:pointer-events-none"
                 >
+                  {
+                    signupForm.isSubmitting ? <IconLoader3 className='animate-spin'/> :   // using icon for loading
+                    <IconSend2/>
+                  }
                   Sign up
                 </button>
               </div>
