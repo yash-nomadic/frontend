@@ -1,8 +1,9 @@
 'use client';
-import { IconTrash } from '@tabler/icons-react';
+import { IconPencil, IconTrash } from '@tabler/icons-react';
 import axios from 'axios'
 import React, { use, useEffect, useState } from 'react'
 import toast from 'react-hot-toast';
+import Link from 'next/link';
 
 const ManageUser = () => {
 
@@ -45,14 +46,14 @@ const ManageUser = () => {
                             <th>EMAIL</th>
                             <th>CITY</th>
                             <th>DATE</th>
-                            <th>Action</th>
+                            <th colSpan={2}>Action</th>
                         </tr>
                     </thead>
                     <tbody>
                         {
                             userList.map((user, index) => {
                                 return <tr key={user._id}
-                                    className= {`border-2 border-blue-300 ${index % 2 === 0 ? 'bg-blue-100' : 'bg-blue-200'}`}>
+                                    className={`border-2 border-blue-300 ${index % 2 === 0 ? 'bg-blue-100' : 'bg-blue-200'}`}>
                                     {/* className={'border-2 border-blue-300 ' + (index % 2 === 0 ? 'bg-blue-100' : 'bg-blue-200')}> */}
                                     <td className='p-3'>{index + 1}</td>
                                     <td className='p-3'>{user._id}</td>
@@ -67,6 +68,16 @@ const ManageUser = () => {
                                             <IconTrash />
                                         </button>
                                     </td>
+
+                                    <td>
+                                        <Link href={`/update-user/${user._id}`}
+                                            className='block w-fit mx-auto rounded bg-blue-500 text-white px-3 py-1'>
+                                            <IconPencil />
+                                        </Link>
+                                        
+                                        
+                                    </td>
+
                                 </tr>
                             })
                         }
