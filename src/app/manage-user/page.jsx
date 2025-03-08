@@ -5,7 +5,7 @@ import React, { use, useEffect, useState } from 'react'
 import toast from 'react-hot-toast';
 import Link from 'next/link';
 
-const ManageUser = () => {
+const ManageSeller = () => {
 
 
     const [userList, setUserList] = useState([]);
@@ -35,7 +35,7 @@ const ManageUser = () => {
     return (
         <div>
             <div className='max-w-[80%] mx-auto h-screen mt-8'>
-                <h1 className='text-3xl font-bold text-center'>ManageUser</h1>
+                <h1 className='text-3xl font-bold text-center'>Manage Seller</h1>
 
                 <table className='w-full mt-10 border-2 border-blue-300'>
                     <thead className='bg-blue-600 text-white'>
@@ -89,4 +89,4 @@ const ManageUser = () => {
     )
 }
 
-export default ManageUser;
+export default ManageSeller;
